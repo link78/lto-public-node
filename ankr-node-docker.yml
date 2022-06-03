@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  public-node:
+    container_name: waga-node
+    image: ltonetwork/public-node
+    volumes:
+      - lto-data:/lto
+    ports:
+      - 6869:6869
+      - 6868:6868
+    environment:
+      - LTO_NETWORK=TESTNET
+      - LTO_WALLET_SEED=CyDv65vgEpswreRcMgYtshep5Q5Ry1EVo8cQqUYhxyJSwEqoCs1DFp8gBC9QmyzenK1cFAmMVp8pyGmPvDAn7ge5gvC5Au1N8FJEGzH69FKq7WfxDjQpiVjbAWCAizCd2jLFDB
+      - LTO_WALLET_PASSWORD=Marine1775$$
+      - LTO_DECLARED_ADDRESS=108.167.36.108:6868
+      - LTO_ENABLE_REST_API=true
+      - LTO_API_KEY=WagaFaso1120$$
+    networks:
+      - lto
+
+  indexer:
+    container_name: indexer
+    image: ltonetwork/indexer
+    volumes:
+      - lto-index:/usr/data/lto-index
+    environment:
+      - NODE_ENV=production
+      - NODE_URL=http://public-node:6869
+      - ASSOCIATION_INDEXING=all
+      - ANCHOR_INDEXING=all
+    ports:
+      - 80:80
+    networks:
+      - lto
+    depends_on:
+      - public-node
+
+volumes:
+  lto-data:
+  lto-index:
+
+networks:
+  lto:
+    driver: bridge
