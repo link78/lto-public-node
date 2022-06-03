@@ -13,7 +13,7 @@ services:
       - 6869:7072
     environment:
       - LTO_NETWORK=TESTNET
-      - LTO_WALLET_SEED=dwarf armed bag nut prosper weekend lawsuit odor fatigue twice cash razor cattle chair creek
+      - LTO_WALLET_SEED=green obscure funny elite predict sibling income weasel dice dose zone october apart planet repair
       - LTO_WALLET_PASSWORD=Marine1775$$
       - LTO_DECLARED_ADDRESS=108.167.36.108:6868
       - LTO_ENABLE_REST_API=true
